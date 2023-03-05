@@ -16,7 +16,9 @@ use App\Http\Controllers\SettingsController;
 */
 
 Route::get('/', function () {
-    return view('main');
+    return view('layout.home', [
+        "title" => "Home",
+    ]);
 });
 
 Route::get('home', function() {
@@ -25,10 +27,11 @@ Route::get('home', function() {
     ]);
 });
 
-Route::resource('/user-list', 'App\Http\Controllers\view\UserListController');
+Route::resource('/user-list', 'App\Http\Controllers\view\UserController');
 
 Route::resource('/profile-data', 'App\Http\Controllers\data\UserController');
 Route::get('profile-data', 'App\Http\Controllers\data\UserController@getListUser')->name("get-list");
 Route::get("profile-data/{id}", 'App\Http\Controllers\data\UserController@show')->name("get-detail-profile");
 
-Route::resource('/settings', SettingsController::class);
+Route::resource('/add-user', 'App\Http\Controllers\view\AddUserController');
+// Route::resource('/add-user-data', 'App\Http\Controllers\data\UserController');
